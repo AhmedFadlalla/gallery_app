@@ -9,6 +9,7 @@ abstract class BaseHomeEvent extends Equatable{
 
 class GetImagesDataEvent extends BaseHomeEvent{}
 class GetImageFromGalleryEvent extends BaseHomeEvent{}
+class GetImageFromCameraEvent extends BaseHomeEvent{}
 class UploadImageEvent extends BaseHomeEvent{
   final String imagePath;
   final String imageName;

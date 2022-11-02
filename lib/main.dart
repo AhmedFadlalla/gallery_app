@@ -14,6 +14,7 @@ void main() async{
    ServicesLocator().init();
 
    uId=CachHelper.getData(key: 'uId');
+   name=CachHelper.getData(key: "name");
    Widget? widget;
    if(uId!=null){
      widget=HomeScreen();

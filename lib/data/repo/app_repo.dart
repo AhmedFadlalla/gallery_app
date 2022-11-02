@@ -4,8 +4,10 @@ import 'package:images_app/domain/entities/base_image_data.dart';
 import '../../core/error/failure.dart';
 import '../../core/utils/constrant.dart';
 import '../../domain/entities/base_auth_data.dart';
+import '../../domain/entities/base_use_data.dart';
 import '../../domain/repo/base_app_repo.dart';
 import '../data_source/base_remote_data_source.dart';
+import '../models/user_data_model.dart';
 
 class AppRepository extends BaseAppRepository{
   final BaseRemoteDataSource baseRemoteDataSource;
@@ -15,7 +17,7 @@ class AppRepository extends BaseAppRepository{
 
 
   @override
-  Future<Either<Failure, String>> userSignIn(UserParameter parameter)async {
+  Future<Either<Failure, BaseUserData>> userSignIn(UserParameter parameter)async {
     final result=await baseRemoteDataSource.userSignIn(parameter);
     try{
       return Right(result);

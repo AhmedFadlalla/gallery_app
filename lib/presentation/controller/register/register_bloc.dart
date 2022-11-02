@@ -31,7 +31,7 @@ class RegisterBloc extends Bloc<BaseRegisterEvent, RegisterState> {
       ), (r) => emit(
           state.copyWith(
               userLoginState: RequestState.loaded,
-              userAccessToken: r
+              userData: r
           )
       ));
     });

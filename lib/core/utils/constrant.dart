@@ -36,3 +36,4 @@ class ImageParameter extends Equatable{
 }
 
 String? uId;
+String? name;

@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:images_app/data/models/image_data_model.dart';
+import 'package:images_app/data/models/user_data_model.dart';
+import 'package:images_app/domain/entities/base_use_data.dart';
 
 
 import '../../core/error/exceptions.dart';
@@ -13,7 +15,7 @@ import '../models/auth_data_model.dart';
 abstract class BaseRemoteDataSource {
 
 
-  Future<String> userSignIn(UserParameter parameter);
+  Future<UserDataModel> userSignIn(UserParameter parameter);
   Future<List<String>> getImagesData();
   Future<void> uploadImage(ImageParameter parameter);
 
@@ -24,7 +26,7 @@ class RemoteDataSource extends BaseRemoteDataSource{
 
 
   @override
-  Future<String> userSignIn(UserParameter parameter)async {
+  Future<UserDataModel> userSignIn(UserParameter parameter)async {
 
     final response=await DioHelper.postData(url:login, data: {
       "email":parameter.email,
@@ -35,7 +37,7 @@ class RemoteDataSource extends BaseRemoteDataSource{
 
     
     if(response.statusCode==200){
-      return response.data["token"];
+      return UserDataModel.fromJson(response.data);
     }else{
       throw ServerException(errorMessageModel: ErrorMessageModel.fromJson(response.data) );
     }

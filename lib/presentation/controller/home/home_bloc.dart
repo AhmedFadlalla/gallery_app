@@ -43,6 +43,15 @@ class HomeBloc extends Bloc<BaseHomeEvent, HomeState> {
           )
       );
     });
+    on<GetImageFromCameraEvent>((event, emit) async {
+      final ImagePicker picker = ImagePicker();
+      final file = await picker.pickImage(source: ImageSource.camera);
+      emit(
+          state.copyWith(
+              image: XFile(file!.path)
+          )
+      );
+    });
     on<UploadImageEvent>((event, emit)async {
       final result=await uploadImageUseCase(ImageParameter(
           imagePath: event.imagePath,

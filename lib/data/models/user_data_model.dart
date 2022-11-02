@@ -5,7 +5,7 @@ class UserDataModel extends BaseUserData{
   UserDataModel({required super.name, required super.email, required super.token});
 
   factory UserDataModel.fromJson(Map<String,dynamic> json){
-    return UserDataModel(name: json["name"], email: json["email"], token: json["token"]);
+    return UserDataModel(name: json["user"]["name"], email: json["user"]["email"], token: json["token"]);
   }
 
 }

@@ -1,6 +1,7 @@
 import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:images_app/presentation/controller/register/register_state.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
@@ -11,55 +12,53 @@ import '../../core/utils/enum.dart';
 import '../controller/home/home_bloc.dart';
 import '../controller/home/home_event.dart';
 import '../controller/home/home_state.dart';
+import 'component/bottom.dart';
 import 'component/compenent.dart';
+import 'component/gallery_screen.dart';
 import 'component/upload_image.dart';
 
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
+
    HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-
-
 
   @override
   Widget build(BuildContext context) {
     uId ??= CachHelper.getData(key: "uId");
-
+    name ??= CachHelper.getData(key: "name");
+    var height=MediaQuery.of(context).size.height;
+    var width=MediaQuery.of(context).size.width;
     return BlocProvider(
-        create: (context)=>sl<HomeBloc>()..add(GetImagesDataEvent()),
+        create: (context)=>sl<HomeBloc>(),
       child: BlocConsumer<HomeBloc,HomeState>(
         builder: (context,state){
-          switch(state.imagesDataState){
-            case RequestState.loading:
-              return const Center(child: CircularProgressIndicator());
-            case RequestState.loaded:
-              var images=state.imagesData;
-              print(images.length);
-              return Scaffold(
-                appBar: AppBar(
-                  title:const Text('My Gallery'),
+      return  Scaffold(
+
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Welcome \n$name',
+                      style: TextStyle(
+                          fontSize: 25
+                      ),
+                    )
+                  ],
                 ),
-                body: ListView.separated(
-                    itemBuilder: (context,index)=>buildItem(images[index]),
-                    separatorBuilder: (context,index)=>myDivider(),
-                    itemCount: images.length),
-                floatingActionButton: FloatingActionButton(
-                  onPressed: (){
-                    showDialog(context: context, builder: (builder){
-                      return const UploadImage();
-                    });
-                  },
-                  child: const Icon(Icons.add),
-                ),
-              );
-            case RequestState.error:
-              return Center(child: Text(state.imagesDataMessage),);
-          }
+                SizedBox(height: height*0.06,),
+                const BottomScreen(),
+                const GalleryScreen(),
+
+              ],
+            ),
+          ),
+        ),
+
+      );
         },
         listener: (context,state){
 
@@ -68,14 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-  Widget buildItem(String image)=>Card(
-    color: Colors.grey,
-    child: Center(
-      child: Image(image: NetworkImage(
-          image),
-        width: 200,
-        fit: BoxFit.cover,
-      ),
-    ),
-  );
+
+
 }
