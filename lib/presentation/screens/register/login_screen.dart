@@ -46,115 +46,105 @@ class UserLoginScreen extends StatelessWidget {
                               color: Colors.black),
                         ),
                         SizedBox(height: height*0.02,),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.grey
-                          ),
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                  controller: emailController,
-                                  style:const TextStyle(
-                                      color: Colors.black
-                                  ),
-                                  decoration: InputDecoration(
-                                      labelText: "Email",
-                                      hintStyle: const TextStyle(
-                                          color: Colors.black
-                                      ),
-                                      labelStyle: const TextStyle(
-                                          color: Colors.black
-                                      ),
-                                      prefixIcon:const  Icon(
-                                        Icons.email,
-                                      ),
-                                      enabledBorder:  OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                          borderSide:  BorderSide(
-                                            color: mainColor,
+                        TextFormField(
+                            controller: emailController,
+                            style:const TextStyle(
+                                color: Colors.black
+                            ),
+                            decoration: InputDecoration(
+                                labelText: "Email",
+                                hintStyle: const TextStyle(
+                                    color: Colors.black
+                                ),
+                                labelStyle: const TextStyle(
+                                    color: Colors.black
+                                ),
+                                prefixIcon:const  Icon(
+                                  Icons.email,
+                                ),
+                                enabledBorder:  OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide:  BorderSide(
+                                      color: mainColor,
 
-                                          )
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                          borderSide: const BorderSide(
-                                            color: mainColor  ,
+                                    )
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: mainColor  ,
 
-                                          )
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(20.0),
-                                          borderSide: const BorderSide(
-                                            color: Colors.white,
+                                    )
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: const BorderSide(
+                                      color: Colors.white,
 
-                                          )
-                                      )
-                                  )
+                                    )
+                                )
+                            )
 
-                              ),
-                              const SizedBox(
-                                height: 20.0,
-                              ),
-                              TextFormField(
-                                  controller: passwordController,
-                                  style:const TextStyle(
-                                      color: Colors.black
-                                  ),
-                                  decoration: InputDecoration(
-                                      labelText: "Password",
-                                      hintStyle: const TextStyle(
-                                          color: Colors.black
-                                      ),
-                                      labelStyle: const TextStyle(
-                                          color: Colors.black
-                                      ),
-                                      prefixIcon:const  Icon(
-                                        Icons.lock,
-                                      ),
-                                      enabledBorder:  OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                          borderSide: const BorderSide(
-                                            color: mainColor,
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        TextFormField(
+                            controller: passwordController,
+                            style:const TextStyle(
+                                color: Colors.black
+                            ),
+                            decoration: InputDecoration(
+                                labelText: "Password",
+                                hintStyle: const TextStyle(
+                                    color: Colors.black
+                                ),
+                                labelStyle: const TextStyle(
+                                    color: Colors.black
+                                ),
+                                prefixIcon:const  Icon(
+                                  Icons.lock,
+                                ),
+                                enabledBorder:  OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: mainColor,
 
-                                          )
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                          borderSide: const BorderSide(
-                                            color: mainColor  ,
+                                    )
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderSide: const BorderSide(
+                                      color: mainColor  ,
 
-                                          )
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(20.0),
-                                          borderSide: const BorderSide(
-                                            color: Colors.white,
+                                    )
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderSide: const BorderSide(
+                                      color: Colors.white,
 
-                                          )
-                                      )
-                                  )
+                                    )
+                                )
+                            )
 
-                              ),
-                              const SizedBox(
-                                height: 20.0,
-                              ),
-                              SizedBox(height: height*0.1,),
-                              defaultButton(function: () {
-                                if(formKey.currentState!.validate()){
-                                  sl<RegisterBloc>().add(
-                                      UserLoginEvent(
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                      ));
+                        ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        SizedBox(height: height*0.1,),
+                        defaultButton(function: () {
+                          if(formKey.currentState!.validate()){
+                            sl<RegisterBloc>().add(
+                                UserLoginEvent(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                ));
 
 
-                                  // navigateTo(context,  HomeScreen());
-                                }
-                              }, text: 'Login'),
-                            ],
-                          ),
-                        )
+                            // navigateTo(context,  HomeScreen());
+                          }
+                        }, text: 'Login')
 
 
                       ],
